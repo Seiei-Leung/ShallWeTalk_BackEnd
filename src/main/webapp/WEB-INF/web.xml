@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <!-- 名称 -->
+    <display-name>ShallWeTalk</display-name>
+
+    <!-- servlet 配置 -->
+    <!-- 对比 spring MVC -->
+    <servlet>
+        <!-- servlet 名字 -->
+        <servlet-name>ShallWeTalkApiServlet</servlet-name>
+        <!-- servlet 容器，这里使用的 Jersey 框架 与 spring MVC 不同-->
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- 映射的包名，用于搜索处理类 -->
+        <!-- 类似于 spring MVC 中的 Controller -->
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>top.seiei.shallwetalk.service</param-value>
+        </init-param>
+        <!-- 设置程序的主入口 -->
+        <!-- 如同 Spring MVC 中的 contextConfigLocation 参数，常用 xml 文件设置该参数，而这里就定义一个 Java 类设置参数 -->
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>top.seiei.shallwetalk.Application</param-value>
+        </init-param>
+
+        <!-- 是否启动就加载 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- 映射 拦截-->
+    <servlet-mapping>
+        <!-- 设置处理的 servlet -->
+        <servlet-name>ShallWeTalkApiServlet</servlet-name>
+        <!-- 访问路径 -->
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+</web-app>

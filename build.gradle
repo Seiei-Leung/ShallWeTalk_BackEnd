@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'top.seiei'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 编写方法：包名:类名:版本号
+    // json 库
+    compile 'com.google.code.gson:gson:2.8.0'
+    // guava 库，java 一些类的封装
+    compile 'com.google.guava:guava:21.0'
+
+    /*
+    * Jersey 轻量级Restful接口框架
+    * */
+    // 客户端，主要用于开发时测试
+    compile 'org.glassfish.jersey.core:jersey-client:2.28'
+    // 服务器端
+    compile 'org.glassfish.jersey.core:jersey-server:2.28'
+    // servlet 容器
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.28'
+    // jersey 注入器
+    compile group: 'org.glassfish.jersey.inject:jersey-hk2:2.28'
+    // 也是一个 Json 解析库
+    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.28'
+
+    /*
+    * 数据库操作框架
+    * */
+    // hibernate 框架核心
+    compile 'org.hibernate:hibernate-core:5.4.1.Final'
+    // 实体类
+    compile 'org.hibernate:hibernate-entitymanager:5.4.1.Final'
+    // 连接池
+    compile 'org.hibernate:hibernate-c3p0:5.4.1.Final'
+
+    // MySQL 驱动库
+    // 这里的声明方法与上面的不同，是第二种声明引用方式
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.14'
+
+    // 测试 junit
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
